@@ -36,8 +36,8 @@ npm install
 ```
 
 Then, download this files and extract them into the project folder.
-*[CasperJS](http://casperjs.org/).
-*[PhantomJS](http://phantomjs.org/download.html).
+* [CasperJS](http://casperjs.org/).
+* [PhantomJS](http://phantomjs.org/download.html).
 
 Finally, run the file:
 ```
