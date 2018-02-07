@@ -1,27 +1,41 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-request("http://sooqmzad.com/categorie/13/%D8%A3%D8%AC%D9%87%D8%B2%D8%A9", function (error, response, body) {
+var cate = ['10','13'];
+//var cate = ['حراج','اجهزة'];
 
-    if (error) {
-        console.log("error");
-        return;
-    }
-    console.log("Status Code" + response.statusCode);
-    var $ = cheerio.load(body)
+var city = ['227','226','228'];
+//var city = ['الرياض','مكة','جدة'];
 
-    var ourDiv = $('table.box_cont')
+for(var j = 0; j < city.length; j++) {
+    for(var i = 0; i < cate.length; i++) {
+        for(var p = 1; p <= 5; p++) {
+            c=city[j];
+            request("http://sooqmzad.com/ads.php?cat="+cate[i]+"&brand=0&typ=0&model=0&country=SA&area="+city[j]+"&service=&id_user=&price_of=&price_up_to=&search=1", function (error, response, body) {
 
-    ourDiv.each(function(index) {
-        var title = $(this).find('div.col-md-11.nopadding')
-        title.each(function(index) {
-            var mtitle = $('a.ads-name', this).text().trim()
-            console.log("Name: "+mtitle);
-            var link = $(this).find('a.ads-name')
-            link.each(function(index) {
-                console.log("Link: "+this.attribs.href);
-                console.log('************************')
+                if (error) {
+                    console.log("error");
+                    return;
+                }
+              //console.log("Status Code" + response.statusCode);
+                var $ = cheerio.load(body)
+
+                var ourDiv = $('table.box_cont')
+
+                ourDiv.each(function(index) {
+                    var title = $(this).find('div.col-md-11.nopadding')
+                    title.each(function(index) {
+                        var mtitle = $('a.ads-name', this).text().trim()
+                        console.log("Name: "+mtitle);
+                        var link = $(this).find('a.ads-name')
+                        link.each(function(index) {
+                            console.log("Link: "+this.attribs.href);
+                            console.log('************************')
+                        })
+                    })
+                })
+                console.log('===========================================================================================================')  
             })
-        })
-    })
-})
+        }
+    }
+}
