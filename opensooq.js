@@ -112,35 +112,35 @@ var suites = {
     },
     17:function() {
         console.log("Suite 17 - OpenSooq riyadh Mobile");
-        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D9%85%D9%88%D8%A8%D8%A7%D9%8A%D9%84-%D8%AA%D8%A7%D8%A8%D9%84%D8%AA/all?page=","مكة","اجهزة");
+        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D9%85%D9%88%D8%A8%D8%A7%D9%8A%D9%84-%D8%AA%D8%A7%D8%A8%D9%84%D8%AA/all?page=","الرياض","اجهزة");
     },
     18:function() {
         console.log("Suite 18 - OpenSooq riyadh Cars");
-        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%AD%D8%B1%D8%A7%D8%AC-%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA/all?page=","مكة","حراج");
+        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%AD%D8%B1%D8%A7%D8%AC-%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA/all?page=","الرياض","حراج");
     },
     19:function() {
         console.log("Suite 19 - OpenSooq riyadh Video Games");
-        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A7%D9%84%D8%B9%D8%A7%D8%A8-%D9%81%D9%8A%D8%AF%D9%8A%D9%88-%D9%88%D9%85%D9%84%D8%AD%D9%82%D8%A7%D8%AA%D9%87%D8%A7/all?page=","مكة","العاب فيديو");
+        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A7%D9%84%D8%B9%D8%A7%D8%A8-%D9%81%D9%8A%D8%AF%D9%8A%D9%88-%D9%88%D9%85%D9%84%D8%AD%D9%82%D8%A7%D8%AA%D9%87%D8%A7/all?page=","الرياض","العاب فيديو");
     },
     20:function() {
         console.log("Suite 20 - OpenSooq riyadh Electronic Devices2");
-        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A7%D8%AC%D9%87%D8%B2%D8%A9-%D8%A7%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A7%D8%AA/all?page=","مكة","اجهزة");
+        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A7%D8%AC%D9%87%D8%B2%D8%A9-%D8%A7%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A7%D8%AA/all?page=","الرياض","اجهزة");
     },
     21:function() {
         console.log("Suite 21 - OpenSooq riyadh Furniture");
-        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A3%D8%AB%D8%A7%D8%AB-%D8%AF%D9%8A%D9%83%D9%88%D8%B1/all?page=","مكة","اثاث");
+        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A3%D8%AB%D8%A7%D8%AB-%D8%AF%D9%8A%D9%83%D9%88%D8%B1/all?page=","الرياض","اثاث");
     },
     22:function() {
         console.log("Suite 22 - OpenSooq riyadh Fashion Women");
-        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A3%D8%B2%D9%8A%D8%A7%D8%A1-%D9%86%D8%B3%D8%A7%D8%A6%D9%8A%D8%A9/all?page=","مكة","أزياء");
+        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A3%D8%B2%D9%8A%D8%A7%D8%A1-%D9%86%D8%B3%D8%A7%D8%A6%D9%8A%D8%A9/all?page=","الرياض","أزياء");
     },
     23:function() {
         console.log("Suite 23 - OpenSooq riyadh Fashion Men");
-        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A3%D8%B2%D9%8A%D8%A7%D8%A1-%D8%B1%D8%AC%D8%A7%D9%84%D9%8A%D8%A9/all?page=","مكة","أزياء");
+        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D8%A3%D8%B2%D9%8A%D8%A7%D8%A1-%D8%B1%D8%AC%D8%A7%D9%84%D9%8A%D8%A9/all?page=","الرياض","أزياء");
     },
     24:function() {
         console.log("Suite 24 - OpenSooq riyadh Furniture");
-        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D9%84%D9%88%D8%A7%D8%B2%D9%85-%D8%A7%D9%84%D8%A3%D8%B7%D9%81%D8%A7%D9%84-%D9%88-%D8%A7%D9%84%D8%A3%D9%84%D8%B9%D8%A7%D8%A8/all?page=","مكة","اثاث");
+        CollectData("https://sa.opensooq.com/ar/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6/%D9%84%D9%88%D8%A7%D8%B2%D9%85-%D8%A7%D9%84%D8%A3%D8%B7%D9%81%D8%A7%D9%84-%D9%88-%D8%A7%D9%84%D8%A3%D9%84%D8%B9%D8%A7%D8%A8/all?page=","الرياض","اثاث");
     }
 };
 
