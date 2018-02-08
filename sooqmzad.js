@@ -1,41 +1,85 @@
 var request = require('request');
 var cheerio = require('cheerio');
+var fs = require('fs');
 
-var cate = ['10','13'];
-//var cate = ['حراج','اجهزة'];
+var result = [];
 
-var city = ['227','226','228'];
-//var city = ['الرياض','مكة','جدة'];
+function CollectData (url,CityName,SectionName){
+    for(var NumPage =1;NumPage<=5;NumPage++){
+        request(url+NumPage, function (error, response, body) {
+            if (error) {
+                console.log("error");
+                return;
+            }
+            var name,link;
+            //console.log("Status Code" + response.statusCode);
+            var $ = cheerio.load(body)
 
-for(var j = 0; j < city.length; j++) {
-    for(var i = 0; i < cate.length; i++) {
-        for(var p = 1; p <= 5; p++) {
-            c=city[j];
-            request("http://sooqmzad.com/ads.php?cat="+cate[i]+"&brand=0&typ=0&model=0&country=SA&area="+city[j]+"&service=&id_user=&price_of=&price_up_to=&search=1", function (error, response, body) {
-
-                if (error) {
-                    console.log("error");
-                    return;
-                }
-              //console.log("Status Code" + response.statusCode);
-                var $ = cheerio.load(body)
-
-                var ourDiv = $('table.box_cont')
-
-                ourDiv.each(function(index) {
-                    var title = $(this).find('div.col-md-11.nopadding')
-                    title.each(function(index) {
-                        var mtitle = $('a.ads-name', this).text().trim()
-                        console.log("Name: "+mtitle);
-                        var link = $(this).find('a.ads-name')
-                        link.each(function(index) {
-                            console.log("Link: "+this.attribs.href);
-                            console.log('************************')
-                        })
+            var ourDiv = $('table.box_cont')
+            ourDiv.each(function(index) {
+                var title = $(this).find('div.col-md-11.nopadding')
+                title.each(function(index) {
+                    var mtitle = $('a.ads-name', this).text().trim()
+                    name=mtitle;
+                    var link = $(this).find('a.ads-name')
+                    link.each(function(index) {
+                        link=this.attribs.href;
+                        console.log("Name: "+name);
+                        console.log("Link: "+link);
+                        console.log("City: "+CityName);
+                        console.log("Section: "+ SectionName);
+                        console.log('****************************************')
+                        result.push({
+                            name: name,
+                            link: link,
+                            city: CityName,
+                            section: SectionName
+                        });
                     })
                 })
-                console.log('===========================================================================================================')  
             })
-        }
+        })
     }
 }
+
+var suites = {
+    1:function() {
+        console.log("Suite 1 - SooqMzad Jeddah Electronic Devices");
+        CollectData("http://sooqmzad.com/ads.php?&cat=13&country=SA&area=227&search=1&page=","جدة","اجهزة");
+    },
+    2:function() {
+        console.log("Suite 2 - SooqMzad Jeddah Cars");
+        CollectData("http://sooqmzad.com/ads.php?&cat=10&country=SA&area=227&search=1&page=","جدة","حراج");
+    },
+    3:function() {
+        console.log("Suite 3 - SooqMzad Mecca Electronic Devices");
+        CollectData("http://sooqmzad.com/ads.php?&cat=13&country=SA&area=226&search=1&page=","مكة","اجهزة");
+    },
+    4:function() {
+        console.log("Suite 4 - SooqMzad Mecca Cars");
+        CollectData("http://sooqmzad.com/ads.php?&cat=10&country=SA&area=226&search=1&page=","مكة","حراج");
+    },
+    5:function() {
+        console.log("Suite 5 - SooqMzad Riyadh Electronic Devices");
+        CollectData("http://sooqmzad.com/ads.php?&cat=13&country=SA&area=228&search=1&page=","الرياض","اجهزة");
+    },
+    6:function() {
+        console.log("Suite 6 - SooqMzad Riyadh Cars");
+        CollectData("http://sooqmzad.com/ads.php?&cat=10&country=SA&area=228&search=1&page=","الرياض","حراج");
+    }
+};
+
+function Start() {
+    console.log("Starting");
+    for(var i =1;i<=Object.keys(suites).length;i++){
+        suites[i]();
+    }
+}
+
+Start();
+
+//fs.write('./ResultsSooqMzad.json', JSON.stringify(result), 'w');
+console.log('*All data is stored in ResultsSooqMzad.json.');
+console.log('========================================'); 
+
+
