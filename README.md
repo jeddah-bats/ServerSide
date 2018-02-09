@@ -2,7 +2,7 @@
 
 ## Running the files
 * Download the [Node js](https://nodejs.org/en/download/).
-* Download the [cmder](http://cmder.net/) *it is optional, but it is preferred to display information.*
+* Download the [cmder](http://cmder.net/). *[it is optional, but it is preferred to display information]*
 * Download the project files.
 
 Through `the cmd or cmder` go to the project folder by cd command:
@@ -68,4 +68,23 @@ set API_KEY=YOUR_GMAPS_API_KEY_GOES_HERE
 Finally, run the file:
 ```
 node info-gmap.js
+```
+
+## Unit testing
+
+we need to install packages mocha and chai.
+```
+npm install mocha chai --save-dev
+```
+
+Set up a test script in `package.json`:
+```
+"scripts": {
+    "test": "mocha || true"
+  }
+```
+
+Then run tests with:
+```
+npm test
 ```
