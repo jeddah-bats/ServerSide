@@ -25,6 +25,16 @@ describe("Test Apps", function(){
 
     describe("Info_GMap", function(){
 
+        it("Set a key", function(){
+            var result = info_gmap.API_KEY;
+            assert.isNotEmpty(result);
+        })
+
+        it("Key is String", function(){
+            var result = info_gmap.API_KEY;
+            assert.typeOf(result, 'string');
+        })
+
         it("Keyword is array", function(){
             var result = info_gmap.keyword;
             assert.isArray(result, 'what Keyword of place do we want?');
