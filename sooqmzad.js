@@ -11,27 +11,33 @@ function CollectData (url,CityName,SectionName){
                 console.log("error");
                 return;
             }
-            var name,link;
+            var name,link,date;
             //console.log("Status Code" + response.statusCode);
             var $ = cheerio.load(body)
 
             var ourDiv = $('table.box_cont')
             ourDiv.each(function(index) {
+
                 var title = $(this).find('div.col-md-11.nopadding')
                 title.each(function(index) {
-                    var mtitle = $('a.ads-name', this).text().trim()
-                    name=mtitle;
+                    name = $('a.ads-name', this).text().trim();
+
+                    date= $(this).children().first().next('a.ads-name').next('i.fa.fa-camera-retro.fa-lg.found.hidden-xs')
+                    .next('div').next('div').next('div').text().trim().replace(/\s/g, '').split(':');
+
                     var link = $(this).find('a.ads-name')
                     link.each(function(index) {
                         link=this.attribs.href;
                         console.log("Name: "+name);
                         console.log("Link: "+link);
+                        console.log("Date: "+date[1]);
                         console.log("City: "+CityName);
                         console.log("Section: "+ SectionName);
                         console.log('****************************************')
                         result.push({
                             name: name,
                             link: link,
+                            date: date[1],
                             city: CityName,
                             section: SectionName
                         });
