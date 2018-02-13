@@ -11,7 +11,7 @@ function CollectData (url,CityName,SectionName){
                 console.log("error");
                 return;
             }
-            var name,link;
+            var name,link,date;
             //console.log("Status Code" + response.statusCode);
             var $ = cheerio.load(body)
             var ourDiv = $('div.post-item')
@@ -19,21 +19,34 @@ function CollectData (url,CityName,SectionName){
             ourDiv.each(function(index) {
                 var divdata = $(this).find('li.rectLi.ie.relative.mb15')
                 divdata.each(function(index) {
+                    var price = $('span.inline.ltr', this).text().trim();
+
+                    var lidate = $(this).find('li.ml8.vMiddle')
+                    lidate.each(function(index) {
+                        date = $('span.rectLiDate', this).text().trim();
+                    })
+
                     var link = $(this).find('a.block.postLink')
                     link.each(function(index) {
                         link="https://sa.opensooq.com"+this.attribs.href;
+
                         var title = $(this).find('span.inline.vMiddle.postSpanTitle')
                         title.each(function(index) {
                         nmae=this.attribs.title;
                         })
+                        
                         console.log("Name: "+nmae);
                         console.log("Link: "+link);
+                        console.log("Price: "+price);
+                        console.log("Date: "+date);
                         console.log("City: "+CityName);
                         console.log("Section: "+ SectionName);
                         console.log('****************************************')
                         result.push({
                             name: name,
                             link: link,
+                            price: price,
+                            date: date,
                             city: CityName,
                             section: SectionName
                         });
@@ -43,7 +56,6 @@ function CollectData (url,CityName,SectionName){
         })
     }
 }
-
 
 var suites = {
     1:function() {
@@ -155,4 +167,4 @@ Start();
 
 //fs.write('./ResultsOpenSooq.json', JSON.stringify(result), 'w');
 console.log('*All data is stored in ResultsOpenSooq.json.');
-console.log('========================================'); 
+console.log('========================================');
