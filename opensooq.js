@@ -4,6 +4,42 @@ var fs = require('fs');
 
 var result = [];
 
+function GetDescription (name,link,price,date,CityName,SectionName){
+    var description;
+    request(link, function (error, response, body) {
+        if (error) {
+            console.log("error");
+            return;
+        }
+        var $ = cheerio.load(body)
+        var ourDiv = $('div#postContWrapper.postCont.clear.relative');
+        ourDiv.each(function(index) {
+            var divdata = $(this).find('div.postDesc')
+            divdata.each(function(index) {
+                description = $('p.firstPart', this).text().trim();
+
+                console.log("Name: "+name);
+                console.log("Link: "+link);
+                console.log("Price: "+price);
+                console.log("Date: "+date);
+                console.log("Description: "+description);
+                console.log("City: "+CityName);
+                console.log("Section: "+ SectionName);
+                console.log('****************************************')
+                result.push({
+                    name: name,
+                    link: link,
+                    price: price,
+                    date: date,
+                    description: description,
+                    city: CityName,
+                    section: SectionName
+                });
+            })
+        })
+    })
+}
+
 function CollectData (url,CityName,SectionName){
     for(var NumPage =1;NumPage<=5;NumPage++){
         request(url+NumPage, function (error, response, body) {
@@ -32,24 +68,11 @@ function CollectData (url,CityName,SectionName){
 
                         var title = $(this).find('span.inline.vMiddle.postSpanTitle')
                         title.each(function(index) {
-                        nmae=this.attribs.title;
+                        name=this.attribs.title;
                         })
-                        
-                        console.log("Name: "+nmae);
-                        console.log("Link: "+link);
-                        console.log("Price: "+price);
-                        console.log("Date: "+date);
-                        console.log("City: "+CityName);
-                        console.log("Section: "+ SectionName);
-                        console.log('****************************************')
-                        result.push({
-                            name: name,
-                            link: link,
-                            price: price,
-                            date: date,
-                            city: CityName,
-                            section: SectionName
-                        });
+
+                        GetDescription(name,link,price,date,CityName,SectionName);
+
                     })
                 })
             })
