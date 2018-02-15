@@ -31,7 +31,7 @@ function CollectData (url,CityName,SectionName){
 
                     console.log("Name: "+name);
                     console.log("Link: "+link);
-                    console.log("Date: "+date);
+                    console.log("Date: "+date[1]);
                     console.log("City: "+CityName);
                     console.log("Section: "+ SectionName);
                     console.log('****************************************')
@@ -39,7 +39,7 @@ function CollectData (url,CityName,SectionName){
                         name: name,
                         link: link,
                         price: null,
-                        date: date,
+                        date: date[1],
                         city: CityName,
                         section: SectionName
                     });
