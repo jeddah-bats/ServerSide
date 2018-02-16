@@ -4,6 +4,55 @@ var fs = require('fs');
 
 var result = [];
 
+function ConvertDate(date){
+    var datenow = new Date();
+    var month = (datenow.getMonth()<10) ? '0'+(datenow.getMonth()+1) : (datenow.getMonth()+1);
+    var day = (datenow.getDate()<10) ? '0'+datenow.getDate() : datenow.getDate();
+    var hour = datenow.getHours();
+
+    var today = datenow.getFullYear()+"-"+month+"-"+day;
+    var yesterday = datenow.getFullYear()+"-"+month+"-"+(day-1);
+
+    if(date.includes('-')) //2018-02-13
+        return date;
+
+    else{
+
+        if(date == "الآن"){
+            return today;
+        }
+        
+        else if(date == "أمس"){
+            return yesterday;
+        }
+
+        else if(date.split(' ').length == 2){ // قبل ساعة أو قبل ساعتان
+            var PastHour = date.split(' ');
+            if(PastHour[1]=="ساعة")
+                if ((hour-1)<0)
+                    return yesterday;
+                else
+                    return today;
+            else
+                if ((hour-2)<0)
+                    return yesterday;
+                else
+                    return today;
+        }
+
+        else if(date.split(' ').length == 3){ //قبل 6 ساعات
+            var PastHour = date.split(' ');
+            if ((hour-PastHour[1])<0)
+                return yesterday;
+            else
+                return today;
+        }
+
+        else
+            return date;
+    }
+}
+
 function CollectData (url,CityName,SectionName){
     for(var NumPage =1;NumPage<=5;NumPage++){
         request(url+NumPage, function (error, response, body) {
@@ -23,7 +72,7 @@ function CollectData (url,CityName,SectionName){
 
                     var lidate = $(this).find('li.ml8.vMiddle')
                     lidate.each(function(index) {
-                        date = $('span.rectLiDate', this).text().trim();
+                        date = ConvertDate($('span.rectLiDate', this).text().trim());
                     })
 
                     var link = $(this).find('a.block.postLink')
