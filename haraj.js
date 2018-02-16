@@ -53,8 +53,9 @@ function CollectData(CityName,SectionName){
         result.push({
         name: itemsList.names[i],
         link: itemsList.links[i],
-        city: CityName,
+        price: null,
         date:itemsList.date[ToGetDate],
+        city: CityName,
         section: SectionName
         });
     console.log("Name: "+itemsList.names[i]);
