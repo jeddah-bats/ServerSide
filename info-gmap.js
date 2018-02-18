@@ -6,14 +6,35 @@ var result = [];
 
 var Info=[
     // city   latitude  longitude 
-    ['Jeddad',21.285407,39.237551],
-    ['Mecca',21.389082,39.857912],
-    ['Riyadh',24.713552,46.675296]
+    ['جدة',21.285407,39.237551],
+    ['مكة',21.389082,39.857912],
+    ['الرياض',24.713552,46.675296]
 ]
 
 module.exports.keyword = ['car','electronics','devices','furniture','video games','fashion','clothing','hardware'];
 var keyword = ['car','electronics','devices','furniture','video games','fashion','clothing','hardware'];
 //var keyword = "car,electronics,devices,furniture,video games,fashion,clothing,hardware";
+
+function ChangeSection (sectionname){
+    if (sectionname=="electronics"||sectionname=="devices"||sectionname=="hardware"){
+        return "اجهزة"
+    }
+    else if (sectionname=="car"){
+        return "حراج"
+    }
+    else if (sectionname=="video games"){
+        return "العاب فيديو"
+    }
+    else if (sectionname=="furniture"){
+        return "اثاث"
+    }
+    else if (sectionname=="fashion"||sectionname=="clothing"){
+        return "أزياء"
+    }
+    else{
+        return sectionname
+    }
+}
 
 function GetPlaces (url,city,section){
     request(url, { json: true }, function (err, res, body) {
@@ -33,7 +54,7 @@ function PushPlaces (body,url,city,section){
             name: body.results[i].name,
             url: url,
             city: city,
-            section: section,
+            section: ChangeSection(section),
             type:"shop"
         });
 
