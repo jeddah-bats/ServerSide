@@ -58,6 +58,13 @@ function PushPlaces (body,url,city,section){
             type:"shop"
         });
 
+        console.log("Name: "+body.results[i].name);
+        console.log("URL: "+url);
+        console.log("City: "+city);
+        console.log("Section: "+ section);
+        console.log("Type: "+ "shop");
+        console.log('****************************************')
+
         fs.writeFileSync('./ResultsInfo-GMap.json', JSON.stringify(result));
     }
 }
