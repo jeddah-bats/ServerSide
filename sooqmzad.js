@@ -4,6 +4,35 @@ var fs = require('fs');
 
 var result = [];
 
+function ConvertDate(Originaldate) {
+    numberOfDays = Originaldate.substring(0, 1);
+    textTime = Originaldate.substring(1, Originaldate.length);
+
+    if (textTime == "أسبوع") {
+        var days = numberOfDays * 7;
+        return CreateISODate(days);
+    } else if (textTime == "شهر") {
+        var days = numberOfDays * 30;
+        return CreateISODate(days);
+    } else if (textTime == "يوم") {
+        var days = numberOfDays;
+        return CreateISODate(days);
+    } else {
+        return numberOfDays + textTime;
+    }
+}
+
+function CreateISODate(days) {
+    var datenow = new Date();
+    datenow.setDate(datenow.getDate() - days);
+
+    var date = datenow.toISOString();
+
+    var isodate = date.split("T");
+
+    return isodate[0];
+}
+
 function CollectData (url,CityName,SectionName){
     for(var NumPage =1;NumPage<=5;NumPage++){
         request(url+NumPage, function (error, response, body) {
@@ -11,7 +40,7 @@ function CollectData (url,CityName,SectionName){
                 console.log("error");
                 return;
             }
-            var name,link,date;
+            var name,link,date,isodate;
             //console.log("Status Code" + response.statusCode);
             var $ = cheerio.load(body)
 
@@ -22,27 +51,44 @@ function CollectData (url,CityName,SectionName){
                 title.each(function(index) {
                     name = $('a.ads-name', this).text().trim();
 
-                    date= $(this).children().first().next('a.ads-name').next('i.fa.fa-camera-retro.fa-lg.found.hidden-xs')
-                    .next('div').next('div').next('div').text().trim().replace(/\s/g, '').split(':');
-
                     var link = $(this).find('a.ads-name')
                     link.each(function(index) {
                         link=this.attribs.href;
 
-                    console.log("Name: "+name);
-                    console.log("Link: "+link);
-                    console.log("Date: "+date[1]);
-                    console.log("City: "+CityName);
-                    console.log("Section: "+ SectionName);
-                    console.log('****************************************')
-                    result.push({
-                        name: name,
-                        link: link,
-                        price: null,
-                        date: date[1],
-                        city: CityName,
-                        section: SectionName
-                    });
+                        date= $(this).next('i.fa.fa-camera-retro.fa-lg.found.hidden-xs').next('div').next('div').next('div').text().trim().replace(/\s/g, '').split(':');
+
+                        if (date[1] != undefined) {
+                            isodate = ConvertDate(date[1]);
+                        }
+                        else{
+                            date= $(this).next('div').next('div').next('div').text().trim().replace(/\s/g, '').split(':');
+                            if (date[1] != undefined) {
+                                isodate = ConvertDate(date[1]);
+                            }
+                            else{
+                                date= $(this).next('i.fa.fa-camera-retro.fa-lg.found.hidden-xs').next('i.fa.fa-video-camera.found.hidden-xs').next('div').next('div').next('div').text().trim().replace(/\s/g, '').split(':');
+                                if (date[1] != undefined) {
+                                    isodate = ConvertDate(date[1]);
+                                }
+                                else
+                                    isodate = "New Structure Date!"
+                            }
+                        }
+
+                        console.log("Name: "+name);
+                        console.log("Link: "+link);
+                        console.log("Date: "+isodate);
+                        console.log("City: "+CityName);
+                        console.log("Section: "+ SectionName);
+                        console.log('****************************************')
+                        result.push({
+                            name: name,
+                            link: link,
+                            price: null,
+                            date: isodate,
+                            city: CityName,
+                            section: SectionName
+                        });
 
                     fs.writeFileSync('./ResultsSooqMzad.json', JSON.stringify(result));
 
