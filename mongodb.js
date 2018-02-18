@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
 var url = "mongodb://localhost:27017/";
 
-var data = fs.readFileSync("d-ResultsHaraj.json");
+var data = fs.readFileSync("ResultsHaraj.json");
 var haraj = JSON.parse(data);
 
 var data2 = fs.readFileSync("ResultsOpenSooq.json");
@@ -79,7 +79,7 @@ MongoClient.connect(url, function(err, db) {
   }
 
   console.log("ResultsOpenSooq.json inserted"); 
-  console.log("d-ResultsHaraj.json inserted"); 
+  console.log("ResultsHaraj.json inserted"); 
   console.log("ResultsSooqMzad.json inserted");
   console.log("ResultsInfo-GMap.json inserted"); 
 
