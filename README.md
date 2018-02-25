@@ -77,6 +77,7 @@ npm install mongodb --save
 ```
 
 * Download [Community Server](https://www.mongodb.com/download-center?jmp=nav#community).
+
 After download, store the program in a custom folder and create a new folder to save the data and name it for example data.
 Open cmd to run DB put the mongod.exe path --dbpath data path:
 ```
