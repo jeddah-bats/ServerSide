@@ -70,7 +70,7 @@ Finally, run the file:
 node info-gmap.js
 ```
 
-## MondoDB
+## MongoDB
 
 ```
 npm install mongodb --save
