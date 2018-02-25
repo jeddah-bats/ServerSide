@@ -70,9 +70,27 @@ Finally, run the file:
 node info-gmap.js
 ```
 
+## MondoDB
+
+```
+npm install mongodb --save
+```
+
+* Download [Community Server](https://www.mongodb.com/download-center?jmp=nav#community).
+After download, store the program in a custom folder and create a new folder to save the data and name it for example data.
+Open cmd to run DB put the mongod.exe path --dbpath data path:
+```
+"C:\...\bin\mongod.exe" --dbpath "C:\..\data"
+```
+Open MongoDB Compass and click connect. 
+Finally, run the file:
+```
+node mongodb.js
+```
+
 ## Unit testing
 
-we need to install packages mocha and chai.
+We need to install packages mocha and chai.
 ```
 npm install mocha chai --save-dev
 ```
