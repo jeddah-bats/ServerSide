@@ -83,8 +83,7 @@ Open cmd to run DB put the mongod.exe path --dbpath data path:
 ```
 "C:\...\bin\mongod.exe" --dbpath "C:\..\data"
 ```
-Open MongoDB Compass and click connect. 
-Finally, run the file:
+Open MongoDB Compass and click connect and finally, run the file:
 ```
 node mongodb.js
 ```
