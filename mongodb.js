@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
-var url = "mongodb://localhost:27017/";
 
+function StoreData (url,name){
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
 
@@ -18,7 +18,7 @@ MongoClient.connect(url, function(err, db) {
           price: opensooq[i].price,
           date: opensooq[i].date,
           city: opensooq[i].city,
-          section: opensooq[i].section
+          cat: opensooq[i].section
           }
         , function(err, res) {
         if (err) throw err;
@@ -38,7 +38,7 @@ MongoClient.connect(url, function(err, db) {
           price: haraj[i].price,
           date: haraj[i].date,
           city: haraj[i].city,
-          section: haraj[i].section
+          cat: haraj[i].section
           }
         , function(err, res) {
         if (err) throw err;
@@ -58,7 +58,7 @@ MongoClient.connect(url, function(err, db) {
           price: sooqmzad[i].price,
           date: sooqmzad[i].date,
           city: sooqmzad[i].city,
-          section: sooqmzad[i].section
+          cat: sooqmzad[i].section
           }
         , function(err, res) {
         if (err) throw err;
@@ -76,7 +76,7 @@ MongoClient.connect(url, function(err, db) {
           name: info_gmap[i].name,
           url: info_gmap[i].url,
           city: info_gmap[i].city,
-          section: info_gmap[i].section, 
+          cat: info_gmap[i].section, 
           type: info_gmap[i].type
           }
         , function(err, res) {
@@ -86,5 +86,10 @@ MongoClient.connect(url, function(err, db) {
     console.log("ResultsInfo-GMap.json inserted"); 
   }
 
+  console.log("Finish from store the data in "+ name);
   db.close();
 });
+}
+
+StoreData("mongodb://localhost:27017/","localhost");
+//StoreData("mongodb://turki:turki@ds147668.mlab.com:47668/senior_project","MongoLab");
