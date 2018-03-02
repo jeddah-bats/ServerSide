@@ -4,8 +4,8 @@ var assert = require('chai').assert;
 //var sooqmzad = require("../sooqmzad");
 var info_gmap = require("../info-gmap");
 //var mongodb = require("../mongodb");
-var request = require('supertest'),
-server = require("../server");
+var request = require('supertest');
+var app = require("../server");
 
 describe("Test Apps", function(){
 
@@ -55,8 +55,15 @@ describe("Test Apps", function(){
     })*/
 
     describe("Server", function(){
-        it('GET /Places/Jeddah/Electronics', function(done) {
-            request(server).get('/Places/Jeddah/Electronics')
+        it('GET /Places', function(done) {
+            request(app).get('/Places')
+              //.set('Accept', 'application/json')
+              //.expect('Content-Type', /json/)
+              .expect(200, done);
+        });
+
+        it('GET /Products', function(done) {
+            request(app).get('/Products')
               //.set('Accept', 'application/json')
               //.expect('Content-Type', /json/)
               .expect(200, done);
