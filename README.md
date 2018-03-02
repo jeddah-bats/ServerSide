@@ -79,13 +79,34 @@ npm install mongodb --save
 * Download [Community Server](https://www.mongodb.com/download-center?jmp=nav#community).
 
 After download, store the program in a custom folder and create a new folder to save the data and name it for example data.
-Open cmd to run DB put the mongod.exe path --dbpath data path:
+Open cmd to run DB put the mongod.exe path --dbpath data folder path:
 ```
 "C:\...\bin\mongod.exe" --dbpath "C:\..\data"
 ```
 Open MongoDB Compass and click connect and finally, run the file:
 ```
 node mongodb.js
+```
+
+## Server
+
+```
+npm install express --save
+```
+
+* Add [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) to your google chrome. *[it is optional, but it is preferred to display information]*
+
+
+Finally, run the file:
+```
+node server.js
+```
+
+After running the server you can go to google chrome and write the following path for example:
+```
+localhost:3000/Places?city=جدة&cat=حراج
+or
+localhost:3000/Products?city=الرياض&cat=اثاث
 ```
 
 ## Unit testing
