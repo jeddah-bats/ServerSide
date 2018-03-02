@@ -92,7 +92,7 @@ node mongodb.js
 
 We need to install packages mocha and chai.
 ```
-npm install mocha chai --save-dev
+npm install mocha chai supertest --save-dev
 ```
 
 Set up a test script in `package.json`:
