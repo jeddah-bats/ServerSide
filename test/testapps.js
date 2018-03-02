@@ -3,6 +3,9 @@ var assert = require('chai').assert;
 //var opensooq = require("../opensooq");
 //var sooqmzad = require("../sooqmzad");
 var info_gmap = require("../info-gmap");
+//var mongodb = require("../mongodb");
+var request = require('supertest'),
+server = require("../server");
 
 describe("Test Apps", function(){
 
@@ -46,4 +49,18 @@ describe("Test Apps", function(){
         })
     })
 
+    /*describe("MongoDB", function(){
+        it("No test :(", function(){
+        })
+    })*/
+
+    describe("Server", function(){
+        it('GET /Places/Jeddah/Electronics', function(done) {
+            request(server).get('/Places/Jeddah/Electronics')
+              //.set('Accept', 'application/json')
+              //.expect('Content-Type', /json/)
+              .expect(200, done);
+        });
+    })
+    
 })
