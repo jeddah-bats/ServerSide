@@ -97,12 +97,12 @@ npm install express --save
 * Add [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) to your google chrome. *[it is optional, but it is preferred to display information]*
 
 
-Finally, run the file:
+Finally, run the server:
 ```
 node server.js
 ```
 
-After running the server you can go to google chrome and write the following path for example:
+After running the server you can go to google chrome and write the following paths for example to get the data:
 ```
 localhost:3000/Places?city=جدة&cat=حراج
 or
