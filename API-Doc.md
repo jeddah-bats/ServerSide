@@ -31,7 +31,7 @@ localhost:3000/`NameOfCollection`?cat=`NameOfCategorize`
 
 Or together :)
 ```
-localhost:3000/`NameOfCollection`?city=`NameOfCity`&cat=`NameOfCategorize`
+localhost:3000/`\NameOfCollection`\?city=`\NameOfCity`\&cat=`\NameOfCategorize`\
 ```
 
 Follow the table to switch variables:
