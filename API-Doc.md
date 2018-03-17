@@ -3,7 +3,7 @@ This document explains how we get data from the MongoDB.
 
 To get all the data:
 ```
-localhost:3000/NameOfCollection
+localhost:3000/`NameOfCollection`
 ```
 
 The data will appear in this format:
@@ -21,17 +21,17 @@ The data will appear in this format:
 
 For specific data such as in a particular city:
 ```
-localhost:3000/NameOfCollection?city=NameOfCity
+localhost:3000/`NameOfCollection`?city=`NameOfCity`
 ```
 
 Or in a particular categorize:
 ```
-localhost:3000/NameOfCollection?cat=NameOfCategorize
+localhost:3000/`NameOfCollection`?cat=`NameOfCategorize`
 ```
 
 Or together :)
 ```
-localhost:3000/NameOfCollection?city=NameOfCity&cat=NameOfCategorize
+localhost:3000/`NameOfCollection`?city=`NameOfCity`&cat=`NameOfCategorize`
 ```
 
 Follow the table to switch variables:
