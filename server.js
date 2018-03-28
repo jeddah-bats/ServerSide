@@ -1,5 +1,6 @@
-const express = require('express')
+﻿const express = require('express')
 const application = express()
+var cors = require('cors')
 const MongoClient = require('mongodb').MongoClient;
 var port = process.env.PORT || 3000;
 const dbLab_url = 'mongodb://turki:turki@ds147668.mlab.com:47668/senior_project';
@@ -26,6 +27,8 @@ MongoClient.connect(dbLab_url, function(err, Mongo_Client) {
         console.log('Server running on port 3000')
     })
 })
+
+application.use(cors())
 
 application.get('/Places', function (request, res) {
     console.log(request.query)
