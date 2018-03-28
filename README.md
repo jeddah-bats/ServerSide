@@ -94,6 +94,10 @@ node mongodb.js
 npm install express --save
 ```
 
+```
+npm install cors
+```
+
 * Add [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) to your google chrome. *[it is optional, but it is preferred to display information]*
 
 
