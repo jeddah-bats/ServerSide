@@ -2,7 +2,9 @@
 const application = express()
 var cors = require('cors')
 const MongoClient = require('mongodb').MongoClient;
+var bodyParser = require('body-parser')
 var port = process.env.PORT || 3000;
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const dbLab_url = 'mongodb://turki:turki@ds147668.mlab.com:47668/senior_project';
 var db;
 
@@ -18,6 +20,21 @@ function Get_Places (db, req_Query, callback) {
         if (err) { callback(err, null) }
         callback(null, json);
     })
+}
+
+function Search(db, req_Query, req_city, callback) {
+    if (req_city == "all") {
+        db.collection('Products').find({ name: { $regex: '' + req_Query + '.*' } }).toArray(function (err, json) {
+            if (err) { callback(err, null) }
+            callback(null, json);
+        })
+
+    } else {
+        db.collection('Products').find({ name: { $regex: '' + req_Query + '.*' }, city: '' + req_city + '' }).toArray(function (err, json) {
+            if (err) { callback(err, null) }
+            callback(null, json);
+        })
+    }
 }
 
 MongoClient.connect(dbLab_url, function(err, Mongo_Client) {
@@ -43,6 +60,15 @@ application.get('/Places', function (request, res) {
 application.get('/Products', function (request, res) {
     console.log(request.query)
     Get_Products(db, request.query, function (err, results) {
+        if (err) {
+            res.status(500).send({ error: 'An Error Occured, Try Again!' })
+        }
+        res.send(results)
+    })
+})
+
+application.post('/Products', urlencodedParser, function (request, res) {
+    Search(db, request.body.searchfield, request.body.city, function (err, results) {
         if (err) {
             res.status(500).send({ error: 'An Error Occured, Try Again!' })
         }
