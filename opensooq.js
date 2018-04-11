@@ -8,10 +8,11 @@ function ConvertDate(date){
     var datenow = new Date();
     var month = (datenow.getMonth()<10) ? '0'+(datenow.getMonth()+1) : (datenow.getMonth()+1);
     var day = (datenow.getDate()<10) ? '0'+datenow.getDate() : datenow.getDate();
+    var dayyes = ((datenow.getDate()-1)<10) ? '0'+datenow.getDate() : datenow.getDate();
     var hour = datenow.getHours();
 
     var today = datenow.getFullYear()+"-"+month+"-"+day;
-    var yesterday = datenow.getFullYear()+"-"+month+"-"+(day-1);
+    var yesterday = datenow.getFullYear()+"-"+month+"-"+(dayyes);
 
     if(date.includes('-')) //2018-02-13
         return date;
@@ -70,7 +71,7 @@ function CollectData (url,CityName,SectionName){
                 divdata.each(function(index) {
                     var price = $('span.inline.ltr', this).text().trim();
 
-                    var lidate = $(this).find('li.ml8.vMiddle')
+                    var lidate = $(this).find('li.ml15.vMiddle')
                     lidate.each(function(index) {
                         date = ConvertDate($('span.rectLiDate', this).text().trim());
                     })
