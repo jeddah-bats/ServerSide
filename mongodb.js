@@ -74,6 +74,8 @@ MongoClient.connect(url, function(err, db) {
       dbo.collection("Places").insertOne(
         {
           name: info_gmap[i].name,
+          lat: info_gmap[i].lat,
+          lng: info_gmap[i].lng,
           url: info_gmap[i].url,
           city: info_gmap[i].city,
           cat: info_gmap[i].section, 

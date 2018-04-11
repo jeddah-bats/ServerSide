@@ -42,7 +42,6 @@ function GetPlaces (url,city,section){
             console.log(err);
             return;
         }
-
         PushPlaces (body,url,city,section);
 
         });
@@ -52,6 +51,8 @@ function PushPlaces (body,url,city,section){
     for(var i = 0;i<body.results.length;i++){
         result.push({
             name: body.results[i].name,
+            lat: body.results[i].geometry.location.lat,
+            lng: body.results[i].geometry.location.lng,
             url: url,
             city: city,
             section: ChangeSection(section),
@@ -59,6 +60,8 @@ function PushPlaces (body,url,city,section){
         });
 
         console.log("Name: "+body.results[i].name);
+        console.log("lat: "+body.results[i].geometry.location.lat);
+        console.log("lng: "+body.results[i].geometry.location.lng);
         console.log("URL: "+url);
         console.log("City: "+city);
         console.log("Section: "+ section);
