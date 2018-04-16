@@ -98,10 +98,6 @@ npm install express --save
 npm install cors
 ```
 
-```
-npm i body-parser
-```
-
 * Add [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) to your google chrome. *[it is optional, but it is preferred to display information]*
 
 
