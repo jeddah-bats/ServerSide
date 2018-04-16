@@ -4,7 +4,6 @@ var cors = require('cors')
 const MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser')
 var port = process.env.PORT || 3000;
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const dbLab_url = 'mongodb://turki:turki@ds147668.mlab.com:47668/senior_project';
 var db;
 
@@ -37,6 +36,18 @@ function Search(db, req_Query, req_city, callback) {
     }
 }
 
+function Statisticss(db, req_Query, callback) {
+    db.collection('Products').aggregate(
+        [
+            { $match: { city: { $in: [req_Query] } } },
+            { $group: { _id: "$cat", total: { $sum: 1 } } }
+        ]
+    ).toArray(function (err, json) {
+        if (err) { callback(err, null) }
+        callback(null, json);
+    })
+}
+
 MongoClient.connect(dbLab_url, function(err, Mongo_Client) {
     if (err) return console.log(err)
     db = Mongo_Client.db('senior_project')
@@ -48,7 +59,6 @@ MongoClient.connect(dbLab_url, function(err, Mongo_Client) {
 application.use(cors())
 
 application.get('/Places', function (request, res) {
-    console.log(request.query)
     Get_Places(db, request.query, function (err, results) {
         if (err) {
             res.status(500).send({ error: 'An Error Occured, Try Again!' })
@@ -58,7 +68,6 @@ application.get('/Places', function (request, res) {
 })
 
 application.get('/Products', function (request, res) {
-    console.log(request.query)
     Get_Products(db, request.query, function (err, results) {
         if (err) {
             res.status(500).send({ error: 'An Error Occured, Try Again!' })
@@ -67,8 +76,17 @@ application.get('/Products', function (request, res) {
     })
 })
 
-application.post('/Products', urlencodedParser, function (request, res) {
-    Search(db, request.body.searchfield, request.body.city, function (err, results) {
+application.get('/results/:city/:searchfield', function (request, res) {
+    Search(db, request.params.searchfield, request.params.city, function (err, results) {
+        if (err) {
+            res.status(500).send({ error: 'An Error Occured, Try Again!' })
+        }
+        res.send(results)
+    })
+})
+
+application.get('/statistics/:city', function (request, res) {
+    Statisticss(db, request.params.city, function (err, results) {
         if (err) {
             res.status(500).send({ error: 'An Error Occured, Try Again!' })
         }
