@@ -22,7 +22,7 @@ function Get_Places (db, req_Query, callback) {
 }
 
 function Search(db, req_Query, req_city, callback) {
-    if (req_city == "all") {
+    if (req_city == "كل المدن") {
         db.collection('Products').find({ name: { $regex: '' + req_Query + '.*' } }).toArray(function (err, json) {
             if (err) { callback(err, null) }
             callback(null, json);
@@ -42,6 +42,46 @@ function Statisticss(db, req_Query, callback) {
             { $match: { city: { $in: [req_Query] } } },
             { $group: { _id: "$cat", total: { $sum: 1 } } }
         ]
+    ).toArray(function (err, json) {
+        if (err) { callback(err, null) }
+        callback(null, json);
+    })
+}
+
+function Comparing(db, req_Query, callback) {
+    db.collection('Products').aggregate(
+        [
+            { $match: { cat: { $in: [req_Query] } } },
+            { $group: { _id: "$city", total: { $sum: 1 } } }
+        ]
+    ).toArray(function (err, json) {
+        if (err) { callback(err, null) }
+        callback(null, json);
+    })
+}
+
+function HotProducts(db, city, cat, product, callback) {
+    db.collection('Products').aggregate(
+        [
+            {
+                $match: {
+                    cat: { $in: [cat] },
+                    city: { $in: [city] },
+                    name: { $regex: product+".*" }
+                }
+            },
+            {
+                $group: { _id: product, total: { $sum: 1 } }
+            }
+        ]
+    ).toArray(function (err, json) {
+        if (err) { callback(err, null) }
+        callback(null, json);
+    })
+}
+
+function SearchMonth(db, req_month, req_city, callback) {
+    db.collection('Products').find({ date: { $regex: "-"+ req_month +'-.*'} }, { city: { $in: req_city } }
     ).toArray(function (err, json) {
         if (err) { callback(err, null) }
         callback(null, json);
@@ -87,6 +127,33 @@ application.get('/results/:city/:searchfield', function (request, res) {
 
 application.get('/statistics/:city', function (request, res) {
     Statisticss(db, request.params.city, function (err, results) {
+        if (err) {
+            res.status(500).send({ error: 'An Error Occured, Try Again!' })
+        }
+        res.send(results)
+    })
+})
+
+application.get('/comparing/:cate', function (request, res) {
+    Comparing(db, request.params.cate, function (err, results) {
+        if (err) {
+            res.status(500).send({ error: 'An Error Occured, Try Again!' })
+        }
+        res.send(results)
+    })
+})
+
+application.get('/hotproduct/:city/:cat/:proudct', function (request, res) {
+    HotProducts(db, request.params.city, request.params.cat, request.params.proudct, function (err, results) {
+        if (err) {
+            res.status(500).send({ error: 'An Error Occured, Try Again!' })
+        }
+        res.send(results)
+    })
+})
+
+application.get('/date/:city/:month', function (request, res) {
+    SearchMonth(db, request.params.month, request.params.city, function (err, results) {
         if (err) {
             res.status(500).send({ error: 'An Error Occured, Try Again!' })
         }

@@ -66,7 +66,7 @@ MongoClient.connect(url, function(err, db) {
     }
     console.log("ResultsSooqMzad.json inserted");
   }
-
+  
   if(fs.existsSync("ResultsInfo-GMap.json")){
     var data4 = fs.readFileSync("ResultsInfo-GMap.json");
     var info_gmap = JSON.parse(data4);
@@ -78,6 +78,7 @@ MongoClient.connect(url, function(err, db) {
           lng: info_gmap[i].lng,
           url: info_gmap[i].url,
           city: info_gmap[i].city,
+          urlplace: info_gmap[i].urlplace,
           cat: info_gmap[i].section, 
           type: info_gmap[i].type
           }

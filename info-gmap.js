@@ -1,5 +1,4 @@
 const API_KEY = process.env.API_KEY;
-module.exports.API_KEY = process.env.API_KEY;
 const request = require('request');
 var fs = require('fs');
 var result = [];
@@ -11,9 +10,7 @@ var Info=[
     ['الرياض',24.713552,46.675296]
 ]
 
-module.exports.keyword = ['car','electronics','devices','furniture','video games','fashion','clothing','hardware'];
 var keyword = ['car','electronics','devices','furniture','video games','fashion','clothing','hardware'];
-//var keyword = "car,electronics,devices,furniture,video games,fashion,clothing,hardware";
 
 function ChangeSection (sectionname){
     if (sectionname=="electronics"||sectionname=="devices"||sectionname=="hardware"){
@@ -36,18 +33,18 @@ function ChangeSection (sectionname){
     }
 }
 
-function GetPlaces (url,city,section){
+function GetPlaces (url,city,urlplace,section){
     request(url, { json: true }, function (err, res, body) {
         if (err) {
             console.log(err);
             return;
         }
-        PushPlaces (body,url,city,section);
+        PushPlaces (body,url,city,urlplace,section);
 
         });
 }
 
-function PushPlaces (body,url,city,section){
+function PushPlaces (body,url,city,urlplace,section){
     for(var i = 0;i<body.results.length;i++){
         result.push({
             name: body.results[i].name,
@@ -55,6 +52,7 @@ function PushPlaces (body,url,city,section){
             lng: body.results[i].geometry.location.lng,
             url: url,
             city: city,
+            urlplace: urlplace+body.results[i].geometry.location.lat+","+body.results[i].geometry.location.lng,
             section: ChangeSection(section),
             type:"shop"
         });
@@ -64,6 +62,7 @@ function PushPlaces (body,url,city,section){
         console.log("lng: "+body.results[i].geometry.location.lng);
         console.log("URL: "+url);
         console.log("City: "+city);
+        console.log("PlaceURL: "+urlplace+body.results[i].geometry.location.lat+","+body.results[i].geometry.location.lng);
         console.log("Section: "+ section);
         console.log("Type: "+ "shop");
         console.log('****************************************')
@@ -78,7 +77,13 @@ for (var j =0;j<Info.length;j++){
         var city = Info[j][0];
         var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
         + location + '&rankby=distance' + '&keyword=' + keyword[i] + '&key=' + API_KEY;
+        var urlplace = "https://www.google.com/maps/dir/?api=1&destination="
         
-        GetPlaces(url,city,keyword[i]);
+        GetPlaces(url,city,urlplace,keyword[i]);
     }
 }
+
+//test
+
+module.exports.keyword = keyword;
+module.exports.API_KEY = API_KEY;
