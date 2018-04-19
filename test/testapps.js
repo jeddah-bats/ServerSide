@@ -1,7 +1,6 @@
 
-
-var Coveralls = require ('coveralls');
-Coveralls.wear;
+require 'coveralls'
+Coveralls.wear!
 
 var assert = require('chai').assert;
 var chai = require('chai');
