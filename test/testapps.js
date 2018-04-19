@@ -1,3 +1,8 @@
+
+
+require 'coveralls'
+Coveralls.wear!
+
 var assert = require('chai').assert;
 var chai = require('chai');
 chai.use(require('chai-fs'));
