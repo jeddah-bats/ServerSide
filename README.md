@@ -1,4 +1,5 @@
 # Interactive Buyers Sellers Map (ServerSide)
+[![Coverage Status](https://coveralls.io/repos/github/jeddah-bats/ServerSide/badge.svg)](https://coveralls.io/github/jeddah-bats/ServerSide)
 
 ## Running the files
 * Download the [Node js](https://nodejs.org/en/download/).
