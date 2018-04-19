@@ -1,4 +1,5 @@
 # Interactive Buyers Sellers Map (ServerSide)
+[![Build Status](https://travis-ci.org/jeddah-bats/ServerSide.svg?branch=master)](https://travis-ci.org/jeddah-bats/ServerSide)
 [![Coverage Status](https://coveralls.io/repos/github/jeddah-bats/ServerSide/badge.svg)](https://coveralls.io/github/jeddah-bats/ServerSide)
 
 ## Running the files
