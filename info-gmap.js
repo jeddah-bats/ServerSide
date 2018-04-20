@@ -55,7 +55,7 @@ function PushPlaces(body, url, city, urlplace, section) {
             section: ChangeSection(section),
             type: "shop"
         });
-
+/*
         console.log("Name: " + body.results[i].name);
         console.log("lat: " + body.results[i].geometry.location.lat);
         console.log("lng: " + body.results[i].geometry.location.lng);
@@ -64,7 +64,7 @@ function PushPlaces(body, url, city, urlplace, section) {
         console.log("PlaceURL: " + urlplace + body.results[i].geometry.location.lat + "," + body.results[i].geometry.location.lng);
         console.log("Section: " + section);
         console.log("Type: " + "shop");
-        console.log('****************************************')
+        console.log('****************************************')*/
 
         fs.writeFileSync('./ResultsInfo-GMap.json', JSON.stringify(result));
     }

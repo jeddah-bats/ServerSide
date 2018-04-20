@@ -37,7 +37,7 @@ function CollectData (url,CityName,SectionName){
     for(var NumPage =1;NumPage<=5;NumPage++){
         request(url+NumPage, function (error, response, body) {
             if (error) {
-                console.log("error");
+               // console.log("error");
                 return;
             }
             var name,link,date,isodate;
@@ -73,13 +73,13 @@ function CollectData (url,CityName,SectionName){
                                     isodate = "New Structure Date!"
                             }
                         }
-
+/*
                         console.log("Name: "+name);
                         console.log("Link: "+link);
                         console.log("Date: "+isodate);
                         console.log("City: "+CityName);
                         console.log("Section: "+ SectionName);
-                        console.log('****************************************')
+                        console.log('****************************************')*/
                         result.push({
                             name: name,
                             link: link,
