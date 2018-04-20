@@ -1,15 +1,5 @@
 var fs = require('fs');
-var casper = require('casper').create({
-    clientScripts: [
-        'node_modules/lodash/lodash.js'
-    ],
-    pageSettings: {
-        loadImages: false,
-        loadPlugins: false
-    },
-    logLevel: "error",
-    verbose: true
-});
+var casper = require('casper').create();
 
 var itemsList = {};
 var result = [];
