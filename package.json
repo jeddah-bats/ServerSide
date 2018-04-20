@@ -1,0 +1,24 @@
+{
+  "name": "collectdata",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha || true"
+  },
+  "dependencies": {
+    "chai-fs": "^2.0.0",
+    "chai-http": "^4.0.0",
+    "cheerio": "^1.0.0-rc.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.3",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "mocha": "^5.0.1",
+    "supertest": "^3.0.0"
+  }
+}

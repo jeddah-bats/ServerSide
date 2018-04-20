@@ -2,7 +2,6 @@
 const application = express()
 var cors = require('cors')
 const MongoClient = require('mongodb').MongoClient;
-var bodyParser = require('body-parser')
 var port = process.env.PORT || 3000;
 const dbLab_url = 'mongodb://turki:turki@ds147668.mlab.com:47668/senior_project';
 var db;
@@ -89,11 +88,19 @@ function SearchMonth(db, req_month, req_city, callback) {
 }
 
 MongoClient.connect(dbLab_url, function(err, Mongo_Client) {
-    if (err) return console.log(err)
+    try{
+    if (err) {
+        throw "connection To MongoLab failed";
+    }else{
     db = Mongo_Client.db('senior_project')
     application.listen(port, function() {
         console.log('Server running on port 3000')
     })
+}
+}catch(err){
+console.log("connection To MongoLab failed");
+process.exit(0);
+}
 })
 
 application.use(cors())
@@ -160,9 +167,6 @@ application.get('/date/:city/:month', function (request, res) {
         res.send(results)
     })
 })
-
-//for test
-module.exports = application;
 
 /*
 حراج

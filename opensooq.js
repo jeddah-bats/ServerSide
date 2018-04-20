@@ -62,7 +62,6 @@ function CollectData (url,CityName,SectionName){
                 return;
             }
             var name,link,date;
-            //console.log("Status Code" + response.statusCode);
             var $ = cheerio.load(body)
             var ourDiv = $('div.post-item')
 

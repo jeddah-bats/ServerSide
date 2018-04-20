@@ -41,7 +41,6 @@ function CollectData (url,CityName,SectionName){
                 return;
             }
             var name,link,date,isodate;
-            //console.log("Status Code" + response.statusCode);
             var $ = cheerio.load(body)
 
             var ourDiv = $('table.box_cont')
@@ -137,5 +136,3 @@ Start();
 
 console.log('*All data is stored in ResultsSooqMzad.json.');
 console.log('========================================'); 
-
-

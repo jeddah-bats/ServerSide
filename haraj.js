@@ -39,7 +39,6 @@ function getDate() {
 }
 
 function click(){
-    //this.scrollToBottom();
     casper.click(".pagination li a");
     casper.wait(5000, function () {
     });
