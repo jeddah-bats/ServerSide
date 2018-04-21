@@ -80,7 +80,7 @@ function HotProducts(db, city, cat, product, callback) {
 }
 
 function SearchMonth(db, req_month, req_city, callback) {
-    db.collection('Products').find({ date: { $regex: "-"+ req_month +'-.*'} }, { city: { $in: req_city } }
+    db.collection('Products').find({ date: { $regex: "-"+ req_month +'-.*'}, city: '' + req_city + '' }
     ).toArray(function (err, json) {
         if (err) { callback(err, null) }
         callback(null, json);
