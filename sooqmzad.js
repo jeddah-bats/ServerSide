@@ -1,4 +1,4 @@
-var request = require('request');
+var request = require('request-promise');
 var cheerio = require('cheerio');
 var fs = require('fs');
 
@@ -95,6 +95,9 @@ function CollectData (url,CityName,SectionName){
                 })
             })
         })
+        .catch(function (err) {
+            console.error(err.name);
+        });
     }
 }
 
